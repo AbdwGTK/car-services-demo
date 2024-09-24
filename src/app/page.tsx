@@ -56,7 +56,7 @@ export default function Home() {
       </main>
       <footer className="bg-gray-800 text-white p-4 mt-4">
         <p className="text-center">
-          &copy; 2023 Car Services. All rights reserved.
+          &copy; 2024 Car Services. All rights reserved.
         </p>
       </footer>
     </div>

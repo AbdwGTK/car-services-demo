@@ -32,7 +32,6 @@ function CreateCarForm() {
       body: JSON.stringify(formData),
     });
     if (response.ok) {
-      alert("Car created successfully!");
       navigate.back();
     } else {
       alert("Failed to create car.");
@@ -113,7 +112,7 @@ function CreateCarForm() {
           </form>
         </div>
         <footer className="bg-gray-200 text-center p-4 w-full">
-          <p>&copy; 2023 Car Services</p>
+          <p>&copy; 2024 Car Services</p>
         </footer>
       </div>
     </div>

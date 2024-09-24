@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 function CreatePartForm() {
@@ -15,6 +16,7 @@ function CreatePartForm() {
       [e.target.name]: e.target.value,
     });
   };
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +28,7 @@ function CreatePartForm() {
       body: JSON.stringify(formData),
     });
     if (response.ok) {
-      alert("Part created successfully!");
+      router.back();
     } else {
       alert("Failed to create part.");
     }
