@@ -10,7 +10,7 @@ function formatDateToDotNetDate(date: string): string {
 
 function CreateServiceForm() {
   const [formData, setFormData] = useState<Service>({
-    serviceId: "",
+    serviceId: 0,
     carId: "",
     date: "",
     description: "",
@@ -137,7 +137,7 @@ function CreateServiceForm() {
               >
                 <option value="">Select a part</option>
                 {parts.map((part) => (
-                  <option key={part.partId} value={part.id}>
+                  <option key={part.partId} value={part.partId}>
                     {part.name} ({part.partNumber})
                   </option>
                 ))}

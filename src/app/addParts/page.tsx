@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function CreatePartForm() {
   const [formData, setFormData] = useState({
+    partId: 0,
     name: "",
     partNumber: "",
     price: "",

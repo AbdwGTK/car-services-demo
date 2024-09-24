@@ -5,6 +5,7 @@ import { Cars } from "../types";
 
 function CreateCarForm() {
   const [formData, setFormData] = useState<Cars>({
+    carId: 0,
     driver: "",
     owner: "",
     make: "",

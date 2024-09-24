@@ -1,5 +1,5 @@
 export interface Cars {
-  carId?: string;
+  carId?: number;
   driver: string;
   owner: string;
   make: string;
@@ -9,14 +9,14 @@ export interface Cars {
 }
 
 export interface Parts {
-  partId?: string;
+  partId?: number;
   name: string;
   partNumber: string;
   price: number;
 }
 
 export interface Service {
-  serviceId: string;
+  serviceId: number;
   carId: string;
   date: string;
   description: string;

@@ -11,7 +11,7 @@ export default function Home() {
     // Fetch the service history data
     async function fetchServiceHistory() {
       try {
-        const response = await fetch("/services");
+        const response = await fetch("https://localhost:7100/services");
         const data = await response.json();
         setServiceHistory(data);
       } catch (error) {
