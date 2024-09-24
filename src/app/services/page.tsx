@@ -1,9 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Cars, Parts, Service } from "../types";
+
+function formatDateToDotNetDate(date: string): string {
+  const t = new Date(date);
+  return t.toISOString();
+}
 
 function CreateServiceForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Service>({
     serviceId: "",
     carId: "",
     date: "",
@@ -11,8 +17,8 @@ function CreateServiceForm() {
     partsUsed: [{ partId: "" }],
   });
 
-  const [cars, setCars] = useState([]);
-  const [parts, setParts] = useState([]);
+  const [cars, setCars] = useState<Cars[]>([]);
+  const [parts, setParts] = useState<Parts[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -65,13 +71,15 @@ function CreateServiceForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Create the service
     const response = await fetch("https://localhost:7100/services", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        ...formData,
+        date: formatDateToDotNetDate(formData.date),
+      }),
     });
     if (response.ok) {
       alert("Service created successfully!");
@@ -90,13 +98,6 @@ function CreateServiceForm() {
           onSubmit={handleSubmit}
           className="space-y-4 p-4 bg-white shadow-md rounded-md"
         >
-          <input
-            name="serviceId"
-            value={formData.serviceId}
-            onChange={handleChange}
-            placeholder="Service ID"
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
           <select
             name="carId"
             value={formData.carId}
@@ -105,13 +106,14 @@ function CreateServiceForm() {
           >
             <option value="">Select a car</option>
             {cars.map((car) => (
-              <option key={car.id} value={car.id}>
+              <option key={car.carId} value={car.carId}>
                 {car.make} {car.model} ({car.year})
               </option>
             ))}
             <option value="new">Create a new car</option>
           </select>
           <input
+            type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
@@ -135,7 +137,7 @@ function CreateServiceForm() {
               >
                 <option value="">Select a part</option>
                 {parts.map((part) => (
-                  <option key={part.id} value={part.id}>
+                  <option key={part.partId} value={part.id}>
                     {part.name} ({part.partNumber})
                   </option>
                 ))}

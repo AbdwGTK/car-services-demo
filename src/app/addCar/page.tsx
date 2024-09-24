@@ -1,8 +1,10 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Cars } from "../types";
 
 function CreateCarForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Cars>({
     driver: "",
     owner: "",
     make: "",
@@ -10,6 +12,7 @@ function CreateCarForm() {
     year: "",
     vin: "",
   });
+  const navigate = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -29,6 +32,7 @@ function CreateCarForm() {
     });
     if (response.ok) {
       alert("Car created successfully!");
+      navigate.back();
     } else {
       alert("Failed to create car.");
     }

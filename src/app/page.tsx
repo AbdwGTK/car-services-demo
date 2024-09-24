@@ -1,10 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Service } from "./types";
 
 export default function Home() {
   const router = useRouter();
-  const [serviceHistory, setServiceHistory] = useState([]);
+  const [serviceHistory, setServiceHistory] = useState<Service[]>([]);
 
   useEffect(() => {
     // Fetch the service history data
